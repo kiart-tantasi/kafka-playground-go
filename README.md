@@ -21,3 +21,13 @@ Start app
 ```
 go run ./cmd/consumer/main.go
 ```
+
+## Producer
+
+Start docker compose
+
+Start app
+
+```
+go run ./cmd/producer/main.go
+```
