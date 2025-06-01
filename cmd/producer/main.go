@@ -25,7 +25,7 @@ func main() {
 }
 
 func produceNMessages(producer *kafka.Producer, topic string, count int) {
-	log.Printf("Starting to produce %d messages to topic %s", count, topic)
+	log.Printf("Starting producing %d messages to topic %s", count, topic)
 	for range count {
 		err := producer.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},

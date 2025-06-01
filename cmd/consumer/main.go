@@ -7,7 +7,7 @@ Experiment1:
 
 Result:
 	after resubscribng to new topic(s),
-	consumer finishes the current message of the first topic(s) and change to read message from the new topic(s0)
+	consumer finishes the current message of the first topic(s) (if have one) and change to read message from the new topic(s0)
 */
 
 package main
@@ -36,14 +36,20 @@ func main() {
 	log.Printf("Created consumer with group id %s", groupId)
 
 	// Subcribe initial topics
-	currentTopics := []string{"test1"}
-	consumer.SubscribeTopics(currentTopics, nil)
-	log.Printf("Subscribed initial topic(s) %s", currentTopics)
+	initialTopics := []string{"test1"}
+	consumer.SubscribeTopics(initialTopics, nil)
+	log.Printf("Subscribed initial topic(s) %s", initialTopics)
 
 	// Topic switcher
 	go func() {
 		for {
-			time.Sleep(5_000 * time.Millisecond)
+			time.Sleep(500 * time.Millisecond)
+
+			var currentTopics []string
+			if currentTopics, err = consumer.Subscription(); err != nil {
+				log.Printf("Error when getting subscription: %s", err)
+				currentTopics = []string{}
+			}
 
 			// switch
 			if currentTopics[0] == "test1" {
@@ -80,7 +86,7 @@ func main() {
 		// Process message
 		message := string(msg.Value)
 		// Fake process time
-		time.Sleep(5 * time.Millisecond)
+		time.Sleep(1 * time.Millisecond)
 
 		// Count
 		// log.Printf("Message: %s", message)
