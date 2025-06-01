@@ -1,0 +1,18 @@
+2025/06/01 12:12:32 Created consumer with group id group-id-random-1748754752243
+2025/06/01 12:12:32 Subscribed initial topic(s) [test1]
+2025/06/01 12:12:32 Reading a message from topics [test1]
+2025/06/01 12:12:35 Message: test1
+2025/06/01 12:12:35 Reading a message from topics [test1]
+2025/06/01 12:12:42 Resubscribed topic(s) [test2]
+2025/06/01 12:12:42 Message: test2
+2025/06/01 12:12:42 Reading a message from topics [test2]
+2025/06/01 12:12:52 Resubscribed topic(s) [test1]
+2025/06/01 12:13:02 Resubscribed topic(s) [test2]
+2025/06/01 12:13:12 Resubscribed topic(s) [test1]
+2025/06/01 12:13:22 Resubscribed topic(s) [test2]
+2025/06/01 12:13:32 Resubscribed topic(s) [test1]
+2025/06/01 12:13:42 Resubscribed topic(s) [test2]
+2025/06/01 12:13:52 Resubscribed topic(s) [test1]
+2025/06/01 12:13:52 Message: test1
+2025/06/01 12:13:52 Reading a message from topics [test1]
+2025/06/01 12:14:02 Resubscribed topic(s) [test2]
