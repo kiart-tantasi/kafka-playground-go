@@ -38,7 +38,7 @@ go run ./cmd/producer/main.go
 
 What happens if consumer continuously reads message from topic(s) and there is another goroutine to make that consumer subscribe different topic(s)
 
-Result: After resubscribng to new topic(s), consumer finishes the current message of the first topic(s) (if have one) and change to read message from the new topic(s)
+Result: After resubscribing to new topic(s), consumer finishes the current message of the first topic(s) (if have one) and change to read message from the new topic(s)
 
 ## Experiment 2
 
