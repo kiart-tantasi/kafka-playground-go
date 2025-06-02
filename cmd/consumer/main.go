@@ -1,15 +1,3 @@
-/*
-Experiment1:
-
-	what happens
-	if consumer continuously reads message from topic(s)
-	and there is another goroutine to make that consumer subscribe different topic(s)
-
-Result:
-	after resubscribng to new topic(s),
-	consumer finishes the current message of the first topic(s) (if have one) and change to read message from the new topic(s0)
-*/
-
 package main
 
 import (
