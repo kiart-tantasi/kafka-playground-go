@@ -12,24 +12,24 @@ Start docker compose
 docker compose up
 ```
 
-## Consumer
-
-Start docker compose
-
-Start app
-
-```
-go run ./cmd/consumer/main.go
-```
-
 ## Producer
 
 Start docker compose
 
-Start app
+Start app. App produces 1000 messages to topic `test1` and 1000 messages to topic `test2`
 
 ```
 go run ./cmd/producer/main.go
+```
+
+## Consumer
+
+Start docker compose
+
+Start app. App consumes messages from topic `test1` and `test2` and app has a dedicated to change topic to subscribe in every 500 ms.
+
+```
+go run ./cmd/consumer/main.go
 ```
 
 # Experiments
