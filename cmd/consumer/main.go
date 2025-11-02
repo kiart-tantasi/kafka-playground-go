@@ -9,8 +9,15 @@ import (
 )
 
 func main() {
-	// Create consumer
+	// Configs
+	var INTERVAL = 500 * time.Millisecond
 	groupId := fmt.Sprintf("group-id-random-%d", time.Now().UnixMilli())
+
+	// Log configs
+	log.Printf("Group id [%s] with interval [%s], app will start in 3 seconds..", groupId, INTERVAL)
+	time.Sleep(3 * time.Second)
+
+	// Create consumer
 	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
 		"bootstrap.servers": "localhost:29092",
 		"group.id":          groupId,
@@ -31,7 +38,7 @@ func main() {
 	// Topic switcher
 	go func() {
 		for {
-			time.Sleep(500 * time.Millisecond)
+			time.Sleep(INTERVAL)
 
 			var currentTopics []string
 			if currentTopics, err = consumer.Subscription(); err != nil {
@@ -47,24 +54,15 @@ func main() {
 			}
 
 			consumer.SubscribeTopics(currentTopics, nil)
-			log.Printf("Resubscribed topic(s) %s", currentTopics)
+			// log.Printf("Resubscribed topic(s) %s", currentTopics)
 		}
 	}()
 
-	counterTest1 := 0
-	counterTest2 := 0
-	counterOther := 0
+	topicTest1 := 0
+	topicTest2 := 0
 
 	for {
-		// Info
-		// if subcribedTopics, err := consumer.Subscription(); err != nil {
-		// 	log.Printf("Error while getting subscription info: %s", err)
-		// 	continue
-		// } else {
-		// 	log.Printf("Reading a message from topics %s", subcribedTopics)
-		// }
-
-		// Read
+		// Consume a message
 		msg, err := consumer.ReadMessage(-1)
 		if err != nil {
 			log.Printf("Error while reading message: %s", err)
@@ -79,13 +77,13 @@ func main() {
 		// Count
 		// log.Printf("Message: %s", message)
 		if message == "test1" {
-			counterTest1++
+			topicTest1++
 		} else if message == "test2" {
-			counterTest2++
+			topicTest2++
 		} else {
-			counterOther++
+			log.Fatalf("Found unexpcted messages [%s]", message)
 		}
-		log.Printf("counterTest1: [%d], counterTest2: [%d], counterOther: [%d]", counterTest1, counterTest2, counterOther)
+		log.Printf("topicTest1: [%d], topicTest2: [%d]", topicTest1, topicTest2)
 	}
 
 }

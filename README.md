@@ -8,28 +8,32 @@ Experimenting Kafka in Go
 
 Start docker compose
 
-```
+```sh
 docker compose up
 ```
 
 ## Producer
 
-Start docker compose
+### Produce 1000 messages into topic `test1` and topic `test2`
 
-Start app. App produces 1000 messages to topic `test1` and 1000 messages to topic `test2`
-
-```
+```sh
 go run ./cmd/producer/main.go
 ```
 
 ## Consumer
 
-Start docker compose
+### Experiment 1 - Consume messages while switching between topic `test1` and `test2` every 500 ms.
 
-Start app. App consumes messages from topic `test1` and `test2` and app has a dedicated to change topic to subscribe in every 500 ms.
-
-```
+```sh
 go run ./cmd/consumer/main.go
+```
+
+### Experiment 2 - 5 Consumers consume messages from 1 paritions vs 5 paritions
+
+(in-progress)
+
+```sh
+go run ./cmd/consumer2/main.go
 ```
 
 # Experiments
