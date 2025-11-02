@@ -19,8 +19,8 @@ func main() {
 	log.Printf("Created producer")
 
 	// Produce messages
-	count := 1000
-	produceNMessages(producer, "test1", count)
+	count := 500000
+	// produceNMessages(producer, "test1", count)
 	produceNMessages(producer, "test2", count)
 }
 
@@ -29,7 +29,7 @@ func produceNMessages(producer *kafka.Producer, topic string, count int) {
 	for range count {
 		err := producer.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
-			Value:          []byte(topic),
+			Value:          []byte("ABCDE"),
 		}, nil)
 		if err != nil {
 			log.Fatalf("Error while producing message: %s", err)
