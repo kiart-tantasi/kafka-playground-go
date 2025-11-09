@@ -61,3 +61,10 @@ go run ./cmd/consumer2/main.go test4
 ### Result
 
 5 paritions have 28% faster performance than 1 parition. The experiment is done with 500,000 messages and each message contains 5-character string"".
+
+# Quick notes
+
+- After Kafka consumer's auto-commit is disabled, it will still consume the next message. Only new consumers will start consume at the un-commited message. Alternatively, we can use consume-message function that receives offset as a parameter.
+
+- Kafka consumer does not consume messages one-by-one. It instead prefetches several messages into local memory.
+
